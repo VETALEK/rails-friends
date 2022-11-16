@@ -1,0 +1,33 @@
+<style>
+  .block {
+    display: block;
+  }
+</style>
+
+<tr id="<%= dom_id friend %>">
+  <td>
+    <%= link_to friend.first_name + " " + friend.last_name, friend %>
+  </td>
+
+  <td>
+    <%= friend.email %>
+  </td>
+
+  <td>
+    <%= friend.phone %>
+  </td>
+
+  <td>
+    <a href="https://<%= friend.socials_link %>">
+      <%= friend.socials_link %>
+    </a>
+  </td>
+
+  <td>
+    <%= link_to "Edit", edit_friend_path(friend), class:"btn btn-warning block btn-sm" %>
+  </td>
+
+  <td>
+    <%= button_to "Delete", friend_path(friend), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger block btn-sm" %>
+  </td>
+</tr>

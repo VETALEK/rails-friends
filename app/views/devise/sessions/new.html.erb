@@ -1,0 +1,66 @@
+<style>
+  .input-group {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .input-group-text {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .form-control {
+    width: 100% !important;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-direction: row-reverse;
+  }
+</style>
+
+<h2>Sign in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div
+    class="
+      field
+      input-group
+      mb-2
+      mr-sm-2
+  ">
+    <div class="input-group-prepend">
+      <%= f.label :email, class:"input-group-text" %>
+    </div>
+
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+  </div>
+
+  <div
+    class="
+      field
+      input-group
+      mb-2
+      mr-sm-2
+  ">
+    <div class="input-group-prepend">
+      <%= f.label :password, class:"input-group-text" %>
+    </div>
+    
+    <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Sign in", class:"btn btn-dark"  %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+<% end %>

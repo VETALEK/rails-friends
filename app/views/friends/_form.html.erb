@@ -1,0 +1,111 @@
+<style>
+  .input-borderless {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+  }
+
+  .input-borderless:focus-visible {
+    outline: none;
+  }
+</style>
+
+<%= form_with(model: friend) do |form| %>
+  <% if friend.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:</h2>
+
+      <ul>
+        <% friend.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table 
+  class="
+    table
+    table-striped
+    table-hover
+    table-bordered
+    border-dark
+  "
+>
+  <thead
+    class="table-dark"
+  >
+    <tr>
+      <th scope="col">Field</th>
+      <th scope="col">Value</th>
+    </tr>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <%= form.label :first_name, style: "display: block" %>
+      </td>
+
+      <td>
+        <%= form.text_field :first_name, class:"input-borderless" %>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <%= form.label :last_name, style: "display: block" %>
+      </td>
+
+      <td>
+        <%= form.text_field :last_name, class:"input-borderless" %>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <%= form.label :email, style: "display: block" %>
+      </td>
+
+      <td>
+        <%= form.text_field :email, class:"input-borderless" %>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <%= form.label :phone, style: "display: block" %>
+      </td>
+
+      <td>
+        <%= form.text_field :phone, class:"input-borderless" %>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <%= form.label :socials_link, style: "display: block" %>
+      </td>
+
+      <td>
+        <%= form.text_field :socials_link, class:"input-borderless" %>
+      </td>
+    </tr>
+    
+    <tr style="display:none;">
+      <td>
+        <%= form.label :user_id, style: "display: block" %>
+      </td>
+
+      <td>
+        <%= form.number_field :user_id, value: current_user.id, id: :friend_user_id, class:"input-borderless" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+  <div>
+    <%= form.submit class:"btn btn-success" %>
+  </div>
+<% end %>
